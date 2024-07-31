@@ -1,0 +1,31 @@
+services:
+  prefect-server:
+    build:
+      context: .
+      dockerfile: prefect_server/Dockerfile
+    ports:
+      - "4200:4200"
+    environment:
+      - PREFECT_SERVER__TELEMETRY__ENABLED=false
+      # - PREFECT_UI_URL=http://127.0.0.1:4200/api
+      # - PREFECT_API_URL=http://127.0.0.1:4200/api
+      - PREFECT_UI_API_URL=http://localhost:4200/api
+      # If you want to access Prefect Server UI from anywhere other than the Docker host machine, you will need to change
+      # PREFECT_UI_URL and PREFECT_API_URL to match the external hostname/IP of the host machine. For example:
+      #- PREFECT_UI_URL=http://external-ip:4200/api
+      #- PREFECT_API_URL=http://external-ip:4200/api
+      - PREFECT_SERVER_API_HOST=0.0.0.0
+      # - PREFECT_API_DATABASE_CONNECTION_URL=postgresql+asyncpg://postgres:postgres@database:5432/prefect
+      # Uncomment the following line if you want to use the 'S3 Bucket' storage block instead of the older 'S3' storage
+      # - EXTRA_PIP_PACKAGES=prefect-aws
+
+  prefect-worker:
+    build:
+      context: .
+      dockerfile: prefect_worker/Dockerfile
+    environment:
+      - PREFECT__BACKEND=server
+      # Internal docker ip can be found with "ip a | grep docker0"
+      - PREFECT_API_URL=http://172.17.0.1:4200/api
+    depends_on:
+      - prefect-server

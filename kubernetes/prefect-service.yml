@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: prefect-service
+  labels:
+    app: prefect-service
+spec:
+  ports:
+    - port: 4200
+      targetPort: 4200
+      protocol: TCP
+  selector:
+    app: prefect-server
+  type: NodePort

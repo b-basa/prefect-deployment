@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "pipeline-setup"
+version = "0.1.0"
+description = "pipeline setup that could be adapted to any project"
+authors = ["b-basa"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "pipeline_setup"}]
+
+[tool.poetry.dependencies]
+python = "^3.9"
+prefect = "^2.19.7"
+pandas = "^2.2.2"
+
+[tool.poetry.group.dev.dependencies]
+black = "^24.4.2"
+taskipy = "^1.13.0"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
