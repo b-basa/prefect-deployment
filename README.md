@@ -1,6 +1,9 @@
 # Pipeline Setup
 
 Prefect deployment using docker-compose and kubernetes (minikube)
+
+Usage of a prefect worker and prefect server.
+
 Local package and image builds will be used.
 
 Guide created on WSL2 Ubuntu 22.04.4 LTS
