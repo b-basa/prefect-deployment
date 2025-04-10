@@ -1,34 +1,26 @@
 # Pipeline Setup
 
-Prefect deployment using docker-compose and kubernetes (minikube)
-
-Usage of a prefect worker and prefect server.
-
-Local package and image builds will be used.
-
-Guide created on WSL2 Ubuntu 22.04.4 LTS
+Prefect (local) deployment using docker-compose and kubernetes (minikube)\
+Usage of a prefect worker and prefect server.\
+Developed in WSL2 Ubuntu 22.04.4 LTS
 
 ## Installation of packages
+Any package manager can be used.
 
-Poetry is used in this repository.
-
-Note: Poetry is a bit annoying to use on Windows
-
-Dependencies can also be checked and installation/building part can be done differently.
-
-Usage of [poetry](https://python-poetry.org/docs/#installing-with-pipx)
+Repository includes a pyproject.toml\
+Usage of [poetry](https://python-poetry.org/docs/#installing-with-pipx).
 
 ```bash | powershell
 poetry shell
 poetry install
 ```
 
-## Usage without deployments
+## Manual usage
 
 To debug any flow, debug_local_main.py can be used.
 
-To debug with prefect setup:
-Open two shells and run each command on a seperate shell.
+To debug with prefect setup:\
+Open two shells and run each command on a seperate shell.\
 
 ```bash
 python debug_prefect_main.py
@@ -43,7 +35,7 @@ Install docker compose and run the following command
 
 ```
 poetry build
-docker compose up
+docker compose up -d
 ```
 
 After that you can reach the prefect frontend from localhost:4200
